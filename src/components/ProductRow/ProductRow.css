@@ -1,0 +1,58 @@
+.product-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.edit-button {
+  color: #5265d5;
+  background: #f0f2ff;
+}
+
+.edit-button:hover {
+  background: #e4e8ff;
+}
+
+.delete-button {
+  color: #cc4d58;
+  background: #ffeaec;
+}
+
+.delete-button:hover {
+  background: #ffdade;
+}
+
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-in-stock {
+  color: #21865a;
+  background: #e8f7ef;
+}
+
+.status-low-stock {
+  color: #b9791e;
+  background: #fff3dc;
+}
+
+.status-out-of-stock {
+  color: #cc4d58;
+  background: #ffeaec;
+}

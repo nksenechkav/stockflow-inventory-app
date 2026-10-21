@@ -1,0 +1,131 @@
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  width: 245px;
+  padding: 28px 18px 20px;
+  background: #ffffff;
+  border-right: 1px solid #e9edf2;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 8px;
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+  color: #182438;
+}
+
+.brand-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 11px;
+  color: #ffffff;
+  background: #5268e8;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nav-label {
+  margin: 43px 10px 14px;
+  color: #9aa4b2;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.navigation {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 43px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #667286;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  color: #4258d4;
+  background: #f4f6ff;
+}
+
+.nav-link.active {
+  color: #485ed8;
+  background: #eef1ff;
+  font-weight: 650;
+}
+
+.nav-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 19px;
+}
+
+.sidebar-bottom {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: auto;
+  padding: 18px 4px 0;
+  border-top: 1px solid #edf0f4;
+}
+
+.avatar {
+  display: grid;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  color: #465bd2;
+  background: #e9edff;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.user-name {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.user-role {
+  margin: 0;
+  color: #8993a2;
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    padding: 16px;
+    border-right: 0;
+    border-bottom: 1px solid #e9edf2;
+  }
+
+  .nav-label {
+    margin-top: 22px;
+  }
+
+  .navigation {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sidebar-bottom {
+    margin-top: 20px;
+  }
+}

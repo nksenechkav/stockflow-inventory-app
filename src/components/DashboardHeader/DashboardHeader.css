@@ -1,0 +1,52 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 104px;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.breadcrumb {
+  margin: 0 0 8px;
+  color: #909aaa;
+  font-size: 12px;
+}
+
+.topbar h1 {
+  margin: 0;
+  color: #202b3c;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.today-label {
+  color: #7b8696;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .main-content {
+    margin-left: 0;
+    padding: 0 16px 30px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 22px 0;
+  }
+
+  .topbar-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
