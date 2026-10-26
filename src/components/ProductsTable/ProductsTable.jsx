@@ -2,7 +2,13 @@
 import ProductRow from '../ProductRow/ProductRow'
 import './ProductsTable.css'
 
-function ProductsTable({ products, onDeleteProduct, onEditProduct }) {
+function ProductsTable({
+  products,
+  onDeleteProduct,
+  onEditProduct,
+  searchQuery,
+  onSearchChange,
+}) {
   return (
     <section className="products-section" id="products">
       <div className="section-header">
@@ -14,9 +20,16 @@ function ProductsTable({ products, onDeleteProduct, onEditProduct }) {
         <button className="secondary-button" type="button">
           View all products →
         </button>
+      </div>     
+      <div className="products-search">
+        <input
+          type="text"
+          placeholder="Search products by name..."
+          value={searchQuery}
+          onChange={(event) => onSearchChange(event.target.value)}
+        />
       </div>
-
-      <div className="table-wrapper">
+     <div className="table-wrapper">
         <table>
           <thead>
             <tr>

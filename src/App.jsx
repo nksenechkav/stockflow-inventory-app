@@ -19,6 +19,14 @@ function App() {
     : initialProducts
 })
 
+const [searchQuery, setSearchQuery] = useState('')
+
+
+const filteredProducts = products.filter((product) =>
+  product.name.toLowerCase().includes(searchQuery.toLowerCase())
+)
+
+
     useEffect(() => {
       localStorage.setItem(
         'stockflow-products',
@@ -120,13 +128,13 @@ function handleEditProduct(product) {
             lowStockProducts={lowStockProducts}
             outOfStockProducts={outOfStockProducts}
         />
-        
         <ProductsTable
-            products={products}
-            onDeleteProduct={handleDeleteProduct}
-            onEditProduct={handleEditProduct}
+          products={filteredProducts}
+          onDeleteProduct={handleDeleteProduct}
+          onEditProduct={handleEditProduct}
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
         />
-
         {isFormOpen && (
             <ProductModal
               onClose={() => {

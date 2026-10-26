@@ -6,27 +6,51 @@
 }
 
 .stat-card {
+  position: relative;
   min-width: 0;
+  overflow: hidden;
   padding: 22px 20px;
   border: 1px solid #e9edf2;
-  border-radius: 12px;
+  border-radius: 14px;
   background: #ffffff;
-  box-shadow: 0 2px 5px rgb(29 43 68 / 2%);
+  box-shadow: 0 3px 10px rgb(29 43 68 / 3%);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #6478e8;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: #dce2f5;
+  box-shadow: 0 8px 20px rgb(29 43 68 / 7%);
 }
 
 .stat-label {
   margin: 0 0 17px;
-  color: #7e8999;
+  color: #727e92;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .stat-value {
   margin: 0 0 12px;
   color: #202b3c;
-  font-size: clamp(22px, 2vw, 29px);
+  font-size: clamp(24px, 2vw, 30px);
   font-weight: 750;
   letter-spacing: -1px;
+  line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
@@ -58,4 +82,61 @@
   .stat-card {
     padding: 16px 13px;
   }
+}
+
+/* Individual accent colors for stat cards */
+.stat-card-total::before {
+  background: #6478e8;
+}
+
+.stat-card-value::before {
+  background: #36a879;
+}
+
+.stat-card-low::before {
+  background: #f0a53a;
+}
+
+.stat-card-out::before {
+  background: #e56b76;
+}
+
+.stat-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.stat-heading .stat-label {
+  margin: 0;
+}
+
+.stat-icon {
+  flex-shrink: 0;
+  box-sizing: content-box;
+  padding: 9px;
+  border-radius: 12px;
+  opacity: 0.95;
+}
+
+.stat-card-total .stat-icon {
+  color: #6478e8;
+  background-color: #eef0ff;
+}
+
+.stat-card-value .stat-icon {
+  color: #36a879;
+  background-color: #e8f7ef;
+}
+
+.stat-card-low .stat-icon {
+  color: #f0a53a;
+  background-color: #fff4df;
+}
+
+.stat-card-out .stat-icon {
+  color: #e56b76;
+  background-color: #ffedef;
 }

@@ -79,3 +79,89 @@ tbody tr:hover {
     padding-left: 16px;
   }
 }
+
+
+/* Product search */
+
+.products-search {
+  padding-left: 16px;
+  margin-bottom: 20px;
+  max-width: 380px;
+}
+
+.products-search input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e5ec;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #252b3b;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.products-search input::placeholder {
+  color: #9ba2b3;
+}
+
+.products-search input:hover {
+  border-color: #b9c3f5;
+}
+
+.products-search input:focus {
+  border-color: #6478e8;
+  box-shadow: 0 0 0 4px rgba(100, 120, 232, 0.12);
+}
+
+
+/* Products table improvements */
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e9ecf3;
+  border-radius: 14px;
+  background-color: #ffffff;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-wrapper thead th {
+  padding: 15px 18px;
+  background-color: #f7f8fc;
+  color: #7c8499;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+  border-bottom: 1px solid #e9ecf3;
+}
+
+.table-wrapper tbody td {
+  padding: 16px 18px;
+  color: #424a5e;
+  font-size: 13px;
+  border-bottom: 1px solid #f0f1f6;
+  transition: background-color 0.2s ease;
+}
+
+.table-wrapper tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-wrapper tbody tr:hover td {
+  background-color: #f8f9ff;
+}
+
+.table-wrapper tbody tr {
+  transition: background-color 0.2s ease;
+}

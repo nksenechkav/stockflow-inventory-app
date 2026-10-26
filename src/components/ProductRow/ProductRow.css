@@ -2,57 +2,92 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .edit-button,
 .delete-button {
-  padding: 6px 10px;
-  border: 0;
-  border-radius: 6px;
-  font: inherit;
+  padding: 7px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .edit-button {
   color: #5265d5;
-  background: #f0f2ff;
+  background-color: #f0f2ff;
+  border-color: #e5e9ff;
 }
 
 .edit-button:hover {
-  background: #e4e8ff;
+  background-color: #e2e7ff;
+  border-color: #ccd4ff;
+  transform: translateY(-1px);
 }
 
 .delete-button {
-  color: #cc4d58;
-  background: #ffeaec;
+  color: #c74756;
+  background-color: #fff0f1;
+  border-color: #ffe0e3;
 }
 
 .delete-button:hover {
-  background: #ffdade;
+  background-color: #ffe2e5;
+  border-color: #ffcbd1;
+  transform: translateY(-1px);
 }
 
+.edit-button:focus-visible,
+.delete-button:focus-visible {
+  outline: 3px solid #aab5ff;
+  outline-offset: 2px;
+}
+
+.edit-button:active,
+.delete-button:active {
+  transform: translateY(0);
+}
 
 .status {
   display: inline-flex;
   align-items: center;
-  padding: 6px 10px;
-  border-radius: 20px;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 999px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .status-in-stock {
-  color: #21865a;
-  background: #e8f7ef;
+  color: #218653;
+  background-color: #e7f7ee;
+  border: 1px solid #d0efdd;
 }
 
 .status-low-stock {
-  color: #b9791e;
-  background: #fff3dc;
+  color: #a9680a;
+  background-color: #fff4dc;
+  border: 1px solid #f8e6b8;
 }
 
 .status-out-of-stock {
-  color: #cc4d58;
-  background: #ffeaec;
+  color: #c43d4b;
+  background-color: #ffeaed;
+  border: 1px solid #f8d5da;
 }
+
+
+
+
+
+
+
