@@ -165,3 +165,30 @@ tbody tr:hover {
 .table-wrapper tbody tr {
   transition: background-color 0.2s ease;
 }
+
+.empty-state {
+  padding: 48px 24px !important;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.empty-state-title {
+  margin: 0;
+  color: #30384b;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.empty-state-text {
+  margin: 0;
+  color: #8b93a5;
+  font-size: 13px;
+  line-height: 1.6;
+}

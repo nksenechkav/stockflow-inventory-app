@@ -43,16 +43,27 @@ function ProductsTable({
           </thead>
 
           <tbody>
-            {products.map((product) => (
-        
-            <ProductRow
-            key={product.id}
-            product={product}
-            onDelete={onDeleteProduct}
-            onEdit={onEditProduct}
-            />
-
-        ))}
+            {products.length > 0 ? (
+              products.map((product) => (
+                <ProductRow
+                  key={product.id}
+                  product={product}
+                  onDelete={onDeleteProduct}
+                  onEdit={onEditProduct}
+                />
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="empty-state">
+                  <div className="empty-state-content">
+                    <p className="empty-state-title">No products found</p>
+                    <p className="empty-state-text">
+                      Try adjusting your search to find what you are looking for.
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
