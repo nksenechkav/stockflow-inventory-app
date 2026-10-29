@@ -8,6 +8,8 @@ function ProductsTable({
   onEditProduct,
   searchQuery,
   onSearchChange,
+  sortOrder,
+  onSortChange,
 }) {
   return (
     <section className="products-section" id="products">
@@ -35,7 +37,21 @@ function ProductsTable({
             <tr>
               <th>Product</th>
               <th>Category</th>
-              <th>Price</th>
+              <th>
+                <button
+                  type="button"
+                  className="sort-button"
+                  onClick={onSortChange}
+                  aria-label={`Sort by price ${
+                    sortOrder === 'asc' ? 'descending' : 'ascending'
+                  }`}
+                >
+                  <span>Price</span>
+                  <span className="sort-arrow">
+                    {sortOrder === 'asc' ? '↑' : '↓'}
+                  </span>
+                </button>
+              </th>
               <th>Stock</th>
               <th>Status</th>
               <th>Actions</th>

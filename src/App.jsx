@@ -20,11 +20,20 @@ function App() {
 })
 
 const [searchQuery, setSearchQuery] = useState('')
+const [sortOrder, setSortOrder] = useState('asc')
 
 
-const filteredProducts = products.filter((product) =>
-  product.name.toLowerCase().includes(searchQuery.toLowerCase())
-)
+const filteredProducts = products
+  .filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+  .sort((a, b) => {
+    if (sortOrder === 'asc') {
+      return a.price - b.price
+    }
+
+    return b.price - a.price
+  })
 
 
     useEffect(() => {
@@ -83,9 +92,13 @@ function handleSubmit(event) {
     )
   } else {
     const newProduct = {
-      id: Date.now(),
-      ...productDataToSave,
-    }
+  id:
+    products.reduce(
+      (maxId, product) => Math.max(maxId, Number(product.id) || 0),
+      0
+    ) + 1,
+  ...productDataToSave,
+}
 
     setProducts((currentProducts) => [
       ...currentProducts,
@@ -134,6 +147,10 @@ function handleEditProduct(product) {
           onEditProduct={handleEditProduct}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+          sortOrder={sortOrder}
+          onSortChange={() =>
+            setSortOrder((current) => (current === 'asc' ? 'desc' : 'asc'))
+          }
         />
         {isFormOpen && (
             <ProductModal

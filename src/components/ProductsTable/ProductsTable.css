@@ -192,3 +192,49 @@ tbody tr:hover {
   font-size: 13px;
   line-height: 1.6;
 }
+
+.sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sort-button:hover {
+  color: #6478e8;
+}
+
+.sort-button:focus-visible {
+  outline: 2px solid #6478e8;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+
+.sort-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  color: #6478e8;
+  background-color: #eef0ff;
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sort-button:hover .sort-arrow {
+  background-color: #dfe4ff;
+  transform: translateY(-1px);
+}
