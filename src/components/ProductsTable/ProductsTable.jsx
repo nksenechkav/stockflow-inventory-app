@@ -10,6 +10,8 @@ function ProductsTable({
   onSearchChange,
   sortOrder,
   onSortChange,
+  selectedCategory,
+  onCategoryChange,
 }) {
   return (
     <section className="products-section" id="products">
@@ -30,6 +32,16 @@ function ProductsTable({
           value={searchQuery}
           onChange={(event) => onSearchChange(event.target.value)}
         />
+        <select
+          className="category-filter"
+          value={selectedCategory}
+          onChange={(event) => onCategoryChange(event.target.value)}
+        >
+          <option value="All">All categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Home & Office">Home & Office</option>
+          <option value="Stationery">Stationery</option>
+        </select>
       </div>
      <div className="table-wrapper">
         <table>

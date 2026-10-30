@@ -21,11 +21,17 @@ function App() {
 
 const [searchQuery, setSearchQuery] = useState('')
 const [sortOrder, setSortOrder] = useState('asc')
+const [selectedCategory, setSelectedCategory] = useState('All')
 
 
 const filteredProducts = products
   .filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+  .filter((product) =>
+    selectedCategory === 'All'
+      ? true
+      : product.category === selectedCategory
   )
   .sort((a, b) => {
     if (sortOrder === 'asc') {
@@ -34,7 +40,6 @@ const filteredProducts = products
 
     return b.price - a.price
   })
-
 
     useEffect(() => {
       localStorage.setItem(
@@ -151,6 +156,8 @@ function handleEditProduct(product) {
           onSortChange={() =>
             setSortOrder((current) => (current === 'asc' ? 'desc' : 'asc'))
           }
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
         />
         {isFormOpen && (
             <ProductModal
