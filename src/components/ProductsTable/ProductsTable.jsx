@@ -12,6 +12,9 @@ function ProductsTable({
   onSortChange,
   selectedCategory,
   onCategoryChange,
+  selectedStatus,
+  onStatusChange,
+  onResetFilters,
 }) {
   return (
     <section className="products-section" id="products">
@@ -42,6 +45,23 @@ function ProductsTable({
           <option value="Home & Office">Home & Office</option>
           <option value="Stationery">Stationery</option>
         </select>
+        <select
+          className="category-filter"
+          value={selectedStatus}
+          onChange={(event) => onStatusChange(event.target.value)}
+        >
+          <option value="All">All statuses</option>
+          <option value="In stock">In stock</option>
+          <option value="Low stock">Low stock</option>
+          <option value="Out of stock">Out of stock</option>
+        </select>
+        <button
+          type="button"
+          className="reset-filters-button"
+          onClick={onResetFilters}
+        >
+          Reset filters
+        </button>
       </div>
      <div className="table-wrapper">
         <table>

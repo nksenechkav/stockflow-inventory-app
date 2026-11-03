@@ -84,16 +84,17 @@ tbody tr:hover {
 /* Product search */
 
 .products-search {
-  padding-left: 16px;
+  padding: 0 16px;
   margin-bottom: 20px;
-  max-width: 650px;
+  max-width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
+  box-sizing: border-box;
 }
 
 .products-search input {
-  width: 100%;
+  width: auto;
   flex: 1;
   min-width: 0;
   padding: 12px 16px;
@@ -245,6 +246,7 @@ tbody tr:hover {
 }
 
 .category-filter {
+  flex-shrink: 0;
   height: 43px;
   min-width: 165px;
   padding: 0 12px;
@@ -284,4 +286,33 @@ tbody tr:hover {
     width: 100%;
     box-sizing: border-box;
   }
+}
+
+.reset-filters-button {
+  height: 43px;
+  padding: 0 16px;
+  border: 1px solid #e2e5ec;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #6478e8;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.reset-filters-button:hover {
+  background-color: #f4f6ff;
+  border-color: #b9c3f5;
+  color: #465ccf;
+}
+
+.reset-filters-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(100, 120, 232, 0.12);
 }

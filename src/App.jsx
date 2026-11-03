@@ -22,7 +22,13 @@ function App() {
 const [searchQuery, setSearchQuery] = useState('')
 const [sortOrder, setSortOrder] = useState('asc')
 const [selectedCategory, setSelectedCategory] = useState('All')
+const [selectedStatus, setSelectedStatus] = useState('All')
 
+function handleResetFilters() {
+  setSearchQuery('')
+  setSelectedCategory('All')
+  setSelectedStatus('All')
+}
 
 const filteredProducts = products
   .filter((product) =>
@@ -32,6 +38,11 @@ const filteredProducts = products
     selectedCategory === 'All'
       ? true
       : product.category === selectedCategory
+  )
+  .filter((product) =>
+    selectedStatus === 'All'
+      ? true
+      : product.status === selectedStatus
   )
   .sort((a, b) => {
     if (sortOrder === 'asc') {
@@ -158,6 +169,9 @@ function handleEditProduct(product) {
           }
           selectedCategory={selectedCategory}
           onCategoryChange={setSelectedCategory}
+          selectedStatus={selectedStatus}
+          onStatusChange={setSelectedStatus}
+          onResetFilters={handleResetFilters}
         />
         {isFormOpen && (
             <ProductModal
