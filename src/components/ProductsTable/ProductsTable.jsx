@@ -15,6 +15,10 @@ function ProductsTable({
   selectedStatus,
   onStatusChange,
   onResetFilters,
+  currentPage,
+  totalPages,
+  onNextPage,
+  onPreviousPage,
 }) {
   return (
     <section className="products-section" id="products">
@@ -114,6 +118,27 @@ function ProductsTable({
             )}
           </tbody>
         </table>
+        <div className="pagination">
+          <button
+            type="button"
+            onClick={onPreviousPage}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <button
+            type="button"
+            onClick={onNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </section>
   )

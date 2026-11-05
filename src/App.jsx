@@ -23,11 +23,26 @@ const [searchQuery, setSearchQuery] = useState('')
 const [sortOrder, setSortOrder] = useState('asc')
 const [selectedCategory, setSelectedCategory] = useState('All')
 const [selectedStatus, setSelectedStatus] = useState('All')
+const [currentPage, setCurrentPage] = useState(1)
+
+const productsPerPage = 5
 
 function handleResetFilters() {
   setSearchQuery('')
   setSelectedCategory('All')
   setSelectedStatus('All')
+}
+
+function handleNextPage() {
+  setCurrentPage((currentPage) =>
+    Math.min(currentPage + 1, totalPages)
+  )
+}
+
+function handlePreviousPage() {
+  setCurrentPage((currentPage) =>
+    Math.max(currentPage - 1, 1)
+  )
 }
 
 const filteredProducts = products
@@ -51,6 +66,17 @@ const filteredProducts = products
 
     return b.price - a.price
   })
+
+  const totalPages = Math.ceil(
+  filteredProducts.length / productsPerPage
+)
+
+const startIndex = (currentPage - 1) * productsPerPage
+
+const currentProducts = filteredProducts.slice(
+  startIndex,
+  startIndex + productsPerPage
+)
 
     useEffect(() => {
       localStorage.setItem(
@@ -158,20 +184,33 @@ function handleEditProduct(product) {
             outOfStockProducts={outOfStockProducts}
         />
         <ProductsTable
-          products={filteredProducts}
+          products={currentProducts}
           onDeleteProduct={handleDeleteProduct}
           onEditProduct={handleEditProduct}
           searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
+          onSearchChange={(value) => {
+            setSearchQuery(value)
+            setCurrentPage(1)
+          }}
           sortOrder={sortOrder}
           onSortChange={() =>
             setSortOrder((current) => (current === 'asc' ? 'desc' : 'asc'))
           }
           selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
+          onCategoryChange={(value) => {
+            setSelectedCategory(value)
+            setCurrentPage(1)
+          }}
           selectedStatus={selectedStatus}
-          onStatusChange={setSelectedStatus}
+          onStatusChange={(value) => {
+            setSelectedStatus(value)
+            setCurrentPage(1)
+          }}
           onResetFilters={handleResetFilters}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onNextPage={handleNextPage}
+          onPreviousPage={handlePreviousPage}
         />
         {isFormOpen && (
             <ProductModal
