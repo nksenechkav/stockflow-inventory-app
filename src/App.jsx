@@ -24,8 +24,7 @@ const [sortOrder, setSortOrder] = useState('asc')
 const [selectedCategory, setSelectedCategory] = useState('All')
 const [selectedStatus, setSelectedStatus] = useState('All')
 const [currentPage, setCurrentPage] = useState(1)
-
-const productsPerPage = 5
+const [productsPerPage, setProductsPerPage] = useState(5)
 
 function handleResetFilters() {
   setSearchQuery('')
@@ -76,6 +75,15 @@ const startIndex = (currentPage - 1) * productsPerPage
 const currentProducts = filteredProducts.slice(
   startIndex,
   startIndex + productsPerPage
+)
+
+const startProduct = filteredProducts.length === 0
+  ? 0
+  : startIndex + 1
+
+const endProduct = Math.min(
+  startIndex + productsPerPage,
+  filteredProducts.length
 )
 
     useEffect(() => {
@@ -211,6 +219,15 @@ function handleEditProduct(product) {
           totalPages={totalPages}
           onNextPage={handleNextPage}
           onPreviousPage={handlePreviousPage}
+          productsPerPage={productsPerPage}
+          onProductsPerPageChange={(value) => {
+          setProductsPerPage(value)
+          setCurrentPage(1)
+        }}
+          startProduct={startProduct}
+          endProduct={endProduct}
+          totalProducts={filteredProducts.length}
+          totalInventoryProducts={products.length}
         />
         {isFormOpen && (
             <ProductModal

@@ -19,6 +19,12 @@ function ProductsTable({
   totalPages,
   onNextPage,
   onPreviousPage,
+  productsPerPage,
+  onProductsPerPageChange,
+  startProduct,
+  endProduct,
+  totalProducts,
+  totalInventoryProducts, 
 }) {
   return (
     <section className="products-section" id="products">
@@ -108,9 +114,22 @@ function ProductsTable({
               <tr>
                 <td colSpan="6" className="empty-state">
                   <div className="empty-state-content">
-                    <p className="empty-state-title">No products found</p>
+                    <p className="empty-state-title">
+                      {totalInventoryProducts === 0
+                        ? 'Your inventory is empty'
+                        : searchQuery.trim() !== ''
+                          ? 'No products found'
+                          : selectedCategory !== 'All'
+                            ? 'No products in this category'
+                            : selectedStatus !== 'All'
+                              ? 'No matching products'
+                              : 'No products found'}
+                    </p>
+
                     <p className="empty-state-text">
-                      Try adjusting your search to find what you are looking for.
+                      {totalInventoryProducts === 0
+                        ? 'Start by adding your first product to the inventory.'
+                        : 'Try adjusting your search or filters to find what you are looking for.'}
                     </p>
                   </div>
                 </td>
@@ -118,7 +137,24 @@ function ProductsTable({
             )}
           </tbody>
         </table>
+        <div className="products-info">
+          Showing {startProduct}–{endProduct} of {totalProducts} products
+        </div>
         <div className="pagination">
+          <label className="items-per-page">
+            <span>Show:</span>
+
+            <select
+              value={productsPerPage}
+              onChange={(event) =>
+                onProductsPerPageChange(Number(event.target.value))
+              }
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={15}>15</option>
+            </select>
+          </label>
           <button
             type="button"
             onClick={onPreviousPage}
