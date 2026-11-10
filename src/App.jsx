@@ -7,6 +7,7 @@ import WelcomeSection from './components/WelcomeSection/WelcomeSection'
 import StatsGrid from './components/StatsGrid/StatsGrid'
 import ProductsTable from './components/ProductsTable/ProductsTable'
 import ProductModal from './components/ProductModal/ProductModal'
+import DeleteConfirmModal from './components/DeleteConfirmModal/DeleteConfirmModal'
 import './App.css'
 
 function App() {
@@ -25,6 +26,7 @@ const [selectedCategory, setSelectedCategory] = useState('All')
 const [selectedStatus, setSelectedStatus] = useState('All')
 const [currentPage, setCurrentPage] = useState(1)
 const [productsPerPage, setProductsPerPage] = useState(5)
+const [productToDelete, setProductToDelete] = useState(null)
 
 function handleResetFilters() {
   setSearchQuery('')
@@ -161,6 +163,9 @@ function handleSubmit(event) {
   setEditingProduct(null)
 }
 
+function handleDeleteClick(product) {
+  setProductToDelete(product)
+}
 
 function handleDeleteProduct(productId) {
   setProducts((currentProducts) =>
@@ -177,6 +182,16 @@ function handleEditProduct(product) {
   setIsFormOpen(true)
 }
 
+function handleConfirmDelete() {
+  if (!productToDelete) return
+
+  handleDeleteProduct(productToDelete.id)
+  setProductToDelete(null)
+}
+
+function handleCancelDelete() {
+  setProductToDelete(null)
+}
   return (
     <div className="app">
     <Sidebar />
@@ -193,7 +208,7 @@ function handleEditProduct(product) {
         />
         <ProductsTable
           products={currentProducts}
-          onDeleteProduct={handleDeleteProduct}
+          onDeleteProduct={handleDeleteClick}
           onEditProduct={handleEditProduct}
           searchQuery={searchQuery}
           onSearchChange={(value) => {
@@ -239,6 +254,11 @@ function handleEditProduct(product) {
               product={editingProduct}
             />
       )}
+            <DeleteConfirmModal
+              product={productToDelete}
+              onConfirm={handleConfirmDelete}
+              onCancel={handleCancelDelete}
+            />
       </main>
     </div>
   )

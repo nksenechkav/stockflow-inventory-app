@@ -30,7 +30,7 @@ function ProductRow({ product, onDelete, onEdit }) {
         <button
           className="delete-button"
           type="button"
-          onClick={() => onDelete(product.id)}
+          onClick={() => onDelete(product)}
         >
           Delete
         </button>
