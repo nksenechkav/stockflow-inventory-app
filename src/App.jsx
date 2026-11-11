@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import initialProducts from './data/initialProducts'
 import Sidebar from './components/Sidebar/Sidebar'
 import DashboardHeader from './components/DashboardHeader/DashboardHeader'
@@ -8,6 +8,7 @@ import StatsGrid from './components/StatsGrid/StatsGrid'
 import ProductsTable from './components/ProductsTable/ProductsTable'
 import ProductModal from './components/ProductModal/ProductModal'
 import DeleteConfirmModal from './components/DeleteConfirmModal/DeleteConfirmModal'
+import Toast from './components/Toast/Toast'
 import './App.css'
 
 function App() {
@@ -27,6 +28,26 @@ const [selectedStatus, setSelectedStatus] = useState('All')
 const [currentPage, setCurrentPage] = useState(1)
 const [productsPerPage, setProductsPerPage] = useState(5)
 const [productToDelete, setProductToDelete] = useState(null)
+const [toasts, setToasts] = useState([])
+
+function showToast(message, type = 'success') {
+  const newToast = {
+    id: Date.now(),
+    message,
+    type,
+  }
+
+  setToasts((currentToasts) => [
+    ...currentToasts,
+    newToast,
+  ].slice(-3))
+}
+
+const handleCloseToast = useCallback((id) => {
+  setToasts((currentToasts) =>
+    currentToasts.filter((toast) => toast.id !== id)
+  )
+}, [])
 
 function handleResetFilters() {
   setSearchQuery('')
@@ -142,6 +163,7 @@ function handleSubmit(event) {
           : product
       )
     )
+    showToast('Product updated successfully!')
   } else {
     const newProduct = {
   id:
@@ -156,6 +178,7 @@ function handleSubmit(event) {
       ...currentProducts,
       newProduct,
     ])
+    showToast('Product added successfully!')
   }
 
   form.reset()
@@ -186,6 +209,7 @@ function handleConfirmDelete() {
   if (!productToDelete) return
 
   handleDeleteProduct(productToDelete.id)
+  showToast('Product deleted successfully!')
   setProductToDelete(null)
 }
 
@@ -259,6 +283,16 @@ function handleCancelDelete() {
               onConfirm={handleConfirmDelete}
               onCancel={handleCancelDelete}
             />
+           <div className="toast-container">
+              {toasts.map((toast) => (
+                <Toast
+                  key={toast.id}
+                  message={toast.message}
+                  type={toast.type}
+                  onClose={handleCloseToast}
+                />
+              ))}
+            </div>
       </main>
     </div>
   )

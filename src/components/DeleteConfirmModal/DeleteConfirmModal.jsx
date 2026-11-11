@@ -1,15 +1,35 @@
 import './DeleteConfirmModal.css'
+import { useEffect } from 'react'
 
 function DeleteConfirmModal({
   product,
   onConfirm,
   onCancel,
 }) {
+    useEffect(() => {
+    if (!product) return
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        onCancel()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [product, onCancel])
+
   if (!product) return null
 
   return (
-    <div className="delete-modal-overlay">
-      <div className="delete-modal">
+    <div className="delete-modal-overlay" onClick={onCancel}>
+      <div
+        className="delete-modal"
+        onClick={(event) => event.stopPropagation()}
+      >
         <h2>Delete product?</h2>
 
         <p>
