@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import initialProducts from './data/initialProducts'
 import Sidebar from './components/Sidebar/Sidebar'
 import DashboardHeader from './components/DashboardHeader/DashboardHeader'
@@ -9,9 +9,11 @@ import ProductsTable from './components/ProductsTable/ProductsTable'
 import ProductModal from './components/ProductModal/ProductModal'
 import DeleteConfirmModal from './components/DeleteConfirmModal/DeleteConfirmModal'
 import Toast from './components/Toast/Toast'
+import useToast from './hooks/useToast'
 import './App.css'
 
 function App() {
+  const { toasts, showToast, handleCloseToast } = useToast()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [products, setProducts] = useState(() => {
   const savedProducts = localStorage.getItem('stockflow-products')
@@ -28,26 +30,6 @@ const [selectedStatus, setSelectedStatus] = useState('All')
 const [currentPage, setCurrentPage] = useState(1)
 const [productsPerPage, setProductsPerPage] = useState(5)
 const [productToDelete, setProductToDelete] = useState(null)
-const [toasts, setToasts] = useState([])
-
-function showToast(message, type = 'success') {
-  const newToast = {
-    id: Date.now(),
-    message,
-    type,
-  }
-
-  setToasts((currentToasts) => [
-    ...currentToasts,
-    newToast,
-  ].slice(-3))
-}
-
-const handleCloseToast = useCallback((id) => {
-  setToasts((currentToasts) =>
-    currentToasts.filter((toast) => toast.id !== id)
-  )
-}, [])
 
 function handleResetFilters() {
   setSearchQuery('')
